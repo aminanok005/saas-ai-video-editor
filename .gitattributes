@@ -1,0 +1,4 @@
+* text=auto
+*.json text=auto
+*.md text=auto
+*.py text=auto
