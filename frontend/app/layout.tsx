@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Kanit, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { designTokens } from '@/lib/design-tokens';
+import { AppProviders } from '../providers';
 
 const kanit = Kanit({
   subsets: ['thai', 'latin'],
@@ -37,10 +38,10 @@ export default function RootLayout({
       <head>
       </head>
       <body className="bg-app min-h-screen">
-        <AppProviders>
-          {children}
-        </AppProviders>
-      </body>
+          <AppProviders>
+            {children}
+          </AppProviders>
+        </body>
     </html>
   );
 }
