@@ -19,5 +19,3 @@ logs/
 # beside it.
 /.plugins/
 /.opencode-skills/
-/setup-nerdctl.sh
-*.sh
