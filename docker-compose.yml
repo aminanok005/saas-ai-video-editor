@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  notion-qc-pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smart_saas_notion_qc_pipeline
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+      - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN}
+      - LINE_USER_ID=${LINE_USER_ID}
+      - NOTION_API_KEY=${NOTION_API_KEY}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - saas_network
+
+networks:
+  saas_network:
+    driver: bridge

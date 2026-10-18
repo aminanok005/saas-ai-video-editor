@@ -25,30 +25,77 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        // Check backend health
-        const health = await api.getHealth();
+        // Check backend health with timeout to avoid hanging
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Backend offline')), 1500)
+        );
+
+        const [health, skillsData, pipeline] = await Promise.race([
+          Promise.all([api.getHealth(), api.getSkills(), api.getPipelineHealth()]),
+          timeoutPromise
+        ]);
+
         setHealthStatus(health);
         setIsApiConnected(true);
-
-        // Load skills
-        const skillsData = await api.getSkills();
         setSkills(skillsData);
-
-        // Get pipeline health
-        const pipeline = await api.getPipelineHealth();
         setPipelineHealth(pipeline);
-
-        console.log('✅ VibeCut AI Frontend initialized successfully');
+        console.log('✅ VibeCut AI Frontend connected to backend successfully');
       } catch (error) {
-        console.error('❌ Failed to initialize app:', error);
+        console.log('ℹ️ VibeCut AI: Backend offline, running in Demo Mode');
         setIsApiConnected(false);
         // Set fallback data for demo purposes
         setHealthStatus({ status: 'offline', message: 'Demo Mode' });
         setSkills({
-          'Demo-Skill-1': { name: 'Demo Skill 1', version: '1.0.0' },
-          'Demo-Skill-2': { name: 'Demo Skill 2', version: '1.0.0' }
+          'ROI_LONG_AMB': { 
+            name: 'High ROI', 
+            version: '2.0.0',
+            aspect_ratio: '9:16',
+            pacing: { intro: 5, middle: 15, outro: 10 },
+            graphics: { intro: true, outro: true },
+            audio: { background: true, voiceover: true }
+          },
+          'NATIVE_SHORT_REELS': { 
+            name: 'Viral Shorts', 
+            version: '2.0.0',
+            aspect_ratio: '9:16',
+            pacing: { intro: 3, middle: 10, outro: 5 },
+            graphics: { intro: false, outro: false },
+            audio: { background: true, voiceover: true }
+          },
+          'MASCOT_ANIMATION_AD': { 
+            name: 'Mascot Ads', 
+            version: '2.0.0',
+            aspect_ratio: '9:16',
+            pacing: { intro: 8, middle: 20, outro: 12 },
+            graphics: { intro: true, outro: true },
+            audio: { background: true, voiceover: true }
+          },
+          'QUICK_DRAFT_GENERATOR': { 
+            name: 'Quick Draft', 
+            version: '2.0.0',
+            aspect_ratio: '9:16',
+            pacing: { intro: 2, middle: 8, outro: 4 },
+            graphics: { intro: true, outro: false },
+            audio: { background: true, voiceover: false }
+          },
+          'BRAND_ASSET_INJECTOR': { 
+            name: 'Brand Injector', 
+            version: '2.0.0',
+            aspect_ratio: '9:16',
+            pacing: { intro: 4, middle: 12, outro: 6 },
+            graphics: { intro: true, outro: true },
+            audio: { background: false, voiceover: true }
+          }
         });
-        setPipelineHealth({ status: 'degraded', agents: {} });
+        setPipelineHealth({ 
+          status: 'degraded', 
+          agents: {
+            mark_editor: 'idle',
+            lisa_mascot: 'idle', 
+            arwin_judge: 'idle',
+            feedback_miner: 'idle'
+          }
+        });
       }
     };
 

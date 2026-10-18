@@ -8,7 +8,8 @@ html {
 }
 
 body {
-  @apply bg-app text-primary;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
 }
 
 /* Custom animations */
@@ -29,33 +30,67 @@ body {
 
 /* Focus rings */
 .focus-ring:focus-visible {
-  @apply outline-none ring-2 ring-border-focus ring-offset-2 ring-offset-bg-app;
+  @apply outline-none ring-2 ring-border-focus ring-offset-2 ring-offset-[var(--bg-app)];
 }
 
-/* Custom utility classes */
-.bg-app { @apply bg-bg-app; }
-.bg-surface { @apply bg-bg-surface; }
-.bg-surface-hover { @apply bg-bg-surface-hover; }
+/* Custom utility classes using CSS variables */
+.bg-app {
+  background-color: var(--bg-app);
+}
+.bg-surface {
+  background-color: var(--bg-surface);
+}
+.bg-surface-hover {
+  background-color: var(--bg-surface-hover);
+}
 
-.text-primary { @apply bg-text-primary; }
-.text-secondary { @apply bg-text-secondary; }
-.text-muted { @apply bg-text-muted; }
+.text-primary {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-muted {
+  color: var(--text-muted);
+}
 
-.border-subtle { @apply bg-border-subtle; }
+.border-subtle {
+  border-color: var(--border-subtle);
+}
 
-.accent-gold { @apply bg-accent-gold; }
-.accent-orange { @apply bg-accent-orange; }
+.accent-gold {
+  background-color: var(--accent-gold);
+}
+.accent-orange {
+  background-color: var(--accent-orange);
+}
 
-.status-pass { @apply bg-status-pass; }
-.status-warning { @apply bg-status-warning; }
-.status-fail { @apply bg-status-fail; }
-.status-active { @apply bg-status-active; }
+.status-pass {
+  background-color: var(--status-pass);
+}
+.status-warning {
+  background-color: var(--status-warning);
+}
+.status-fail {
+  background-color: var(--status-fail);
+}
+.status-active {
+  background-color: var(--status-active);
+}
 
-.rounded-sm { @apply bg-radius-sm; }
-.rounded-md { @apply bg-radius-md; }
-.rounded-lg { @apply bg-radius-lg; }
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+.rounded-md {
+  border-radius: var(--radius-md);
+}
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
 
-.shadow-card { @apply bg-shadow-card; }
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
 
 :root {
   --bg-app: #0D0E12;

@@ -1,0 +1,74 @@
+/* VibeCut AI - Design Tokens */
+:root {
+  /* Surface & Background Layering */
+  --bg-app: #0D0E12;                  /* Ultra Dark Obsidian Base */
+  --bg-surface: #161820;              /* Warm Charcoal Panel Surface */
+  --bg-surface-hover: #202330;        /* Hover Card State */
+  --bg-glass: rgba(22, 24, 32, 0.75);   /* Glassmorphism Backdrop Filter */
+  
+  /* Primary Accent Palette (Warm Amber & Cyber Gold) */
+  --accent-gold: #FFB800;             /* Primary Brand Amber Gold */
+  --accent-gold-glow: rgba(255, 184, 0, 0.20);
+  --accent-orange: #FF6B00;           /* Active Action Orange */
+  --accent-orange-glow: rgba(255, 107, 0, 0.20);
+
+  /* Agent & QC Status Colors */
+  --status-pass: #34C759;             /* QC Passed Emerald Green */
+  --status-warning: #FF9F0A;          /* Safe-Zone Caution Orange */
+  --status-fail: #FF3B30;             /* Safe-Zone Violation Crimson */
+  --status-active: #0A84FF;           /* Agent Processing Blue */
+
+  /* Neutral Text & Borders */
+  --text-primary: #F5F6FA;            /* Crisp High-Contrast White */
+  --text-secondary: #9DA3B4;          /* Slate Secondary Text */
+  --text-muted: #62687A;              /* Muted Label Text */
+  --border-subtle: #2A2E3D;           /* Subtle Card Divider */
+  --border-focus: #FFB800;            /* Active Focus Ring */
+
+  /* Structural Geometry & Layout */
+  --font-main: 'Kanit', 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-card: 0 12px 32px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font-main);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Utility classes for the design system */
+.bg-app { background-color: var(--bg-app); }
+.bg-surface { background-color: var(--bg-surface); }
+.bg-surface-hover { background-color: var(--bg-surface-hover); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+
+.border-subtle { border-color: var(--border-subtle); }
+
+.accent-gold { color: var(--accent-gold); }
+.accent-orange { color: var(--accent-orange); }
+
+.status-pass { color: var(--status-pass); }
+.status-warning { color: var(--status-warning); }
+.status-fail { color: var(--status-fail); }
+.status-active { color: var(--status-active); }
+
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+
+shadow-card { box-shadow: var(--shadow-card); }
